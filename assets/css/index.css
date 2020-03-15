@@ -1,0 +1,26 @@
+#prompt{
+    height: 800px;
+    overflow: scroll;
+}
+
+.flex_views{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+.flex_content_start{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.flex_content_center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex_content_end{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
