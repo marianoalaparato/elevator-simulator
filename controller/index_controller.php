@@ -1,6 +1,9 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/lib/Autoloader.php';
+# Copy this line in all of controllers files
+$project_root_path = '/';
+
+require_once $_SERVER['DOCUMENT_ROOT'].$project_root_path.'lib/Autoloader.php';
 
 use lib\files_tools\FilePathManager;
 use lib\files_tools\FileUrlManager;
