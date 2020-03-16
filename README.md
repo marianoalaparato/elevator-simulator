@@ -16,14 +16,13 @@ This project is based on MVC model, and develops in PHP 7.
 # More:
 ## Adding new pages
 If you want to create a new page, for example, called create-model.php:
-1. Create file 'create-model_controller.php' and put on controllers folder
-2. Create file 'create-model_model.php' and put on models folder
-3. Create file 'create-model_view.php' and put on view folder
-4. Go to RouterManager.php file and add new route to 'request_controller' variable:
+1. Create file 'create-model_controller.php' and put on controllers folder.
+2. Go to RouterManager.php file and add new route to 'request_controller' variable:
      '["/create-model.php" => "create-model"]'
    or
      '["/folder-name/create-model.php" => "create-model"]'
    if your projects is placed on a subfolder of root server path
+3. The model and view names, and require methods and actions used from controller to this files and in this files, its your decision.
 
 ## Adding Js and Css to new pages
 If you want to add Js and Css on pages, get the name of page, for example, called create-model.php and:
