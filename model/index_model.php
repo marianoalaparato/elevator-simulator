@@ -3,11 +3,6 @@
 use lib\mysqli_tools\MySQLiTablesManager;
 use lib\security_tools\SecurityTools;
 
-/**
- * Description of indexModel
- *
- * @author mkl
- */
 class IndexModel {
     
     # Properties

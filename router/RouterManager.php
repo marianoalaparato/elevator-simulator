@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Description of routerManager
- *
- * @author mkl
- */
-
 namespace router;
 
 use lib\security_tools\SecurityTools;
@@ -31,6 +25,10 @@ class RouterManager {
      */
     public function getRequestController($request){
         if(false === $this->security_tools->checkIsType($request, 'string',true)){
+            return false;
+        }
+        
+        if(false === isset($this->requests_controllers[$request])){
             return false;
         }
         

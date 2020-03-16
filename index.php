@@ -1,11 +1,5 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 require_once 'lib/Autoloader.php';
 
 use router\RouterManager;
@@ -40,7 +34,9 @@ $css_url_path = FileUrlManager::getRootCssPath();
     <body>
         <?php
             if(false === $request){
-                require FilePathManager::getRootViewsPath().'not_found.html';
+                require FilePathManager::getRootViewsPath().'page_not_found.php';
+                $new_failed_request = new PageNotFound();
+                $new_failed_request->getRenderPageNotFound();
             }else{
                 require $controller_file_path.$request.'_controller.php';
             }

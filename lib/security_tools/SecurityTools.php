@@ -2,11 +2,6 @@
 
 namespace lib\security_tools;
 
-/**
- * Description of developerTools
- *
- * @author mkl
- */
 class SecurityTools {
     # Properties
     

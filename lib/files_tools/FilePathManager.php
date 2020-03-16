@@ -2,12 +2,6 @@
 
 namespace lib\files_tools;
 
-/**
- * Description of filePathManager
- *
- * @author mkl
- */
-
 class FilePathManager{
 
     # Methods

@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Description of MySQLiConn
- *
- * @author mkl
- */
-
 namespace lib\mysqli_tools;
 
 use mysqli;
