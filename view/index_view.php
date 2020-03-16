@@ -8,7 +8,7 @@ class IndexView{
     public function getRenderElevators($building_h, $total_floors, $floors_h, $total_elevators){
         ?>
         <!--Elevators action view-->
-        <div id="view" class="row" style="height: <?php echo $building_h."px;" ?> overflow:scroll;">
+        <div id="view" class="row container-fluid" style="height: <?php echo $building_h."px;" ?> overflow:scroll;">
             <?php for($i = 0; $i < $total_elevators; $i++){ ?>
             <div class="col bg-dark">
                <?php for($j = 0; $j < $total_floors; $j++){ ?>
@@ -26,7 +26,7 @@ class IndexView{
     public function getRenderPrompt(){
         ?>
         <!--Process promp-->
-        <div id="prompt" class="row p-3 my-3 bg-dark text-white">
+        <div id="prompt" class="row container-fluid p-3 my-3 bg-dark text-white">
             <p id="prompt_txt"></p>
         </div>
         <?php

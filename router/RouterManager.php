@@ -14,7 +14,8 @@ class RouterManager {
     # Porperties
     private $security_tools;
     private $requests_controllers = [
-        '/' => 'index'
+        '/' => 'index',# Use domain name or IP in browser url request and projec files is on root server
+        '/folder_name/' => 'index' # Use domain name or IP in browser url request and project files is on a subfolder of server 
     ];
     
     # Methods
