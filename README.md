@@ -1,2 +1,38 @@
-# elevator-simulator
-Configure and get a report of a simulation, train a neural-net with data report, for get the control of elevators actions. 
+# Elevator simulator
+Configure and get a report of a simulation, train a neural-net with data report, for get the control of elevators actions.
+
+# Installation
+If you want to install this project on a subfolder of server root path like '/var/www/html/folder-name/',:
+1. Go to Autoloader.php file and set 'prooject_root_path = '"/folder-name/"'
+2. Go to RouterManager.php file and set 'request_controllers = ['/folder-name/' => 'index'], and some routes that you create.
+
+And anything more.
+
+This 2 variables provides you to make separeted projects in sub-folders easy, and the rest of clases, methods, and assets (js, css, img, tmp) works automatically.
+
+# Requirements
+This project is based on MVC model, and develops in PHP 7.
+
+# More:
+## Adding new pages
+If you want to create a new page, for example, called create-model.php:
+1. Create file 'create-model_controller.php' and put on controllers folder
+2. Create file 'create-model_model.php' and put on models folder
+3. Create file 'create-model_view.php' and put on view folder
+4. Go to RouterManager.php file and add new route to 'request_controller' variable:
+     '["/create-model.php" => "create-model"]'
+   or
+     '["/folder-name/create-model.php" => "create-model"]'
+   if your projects is placed on a subfolder of root server path
+
+## Adding Js and Css to new pages
+If you want to add Js and Css on pages, get the name of page, for example, called create-model.php and:
+1. Go to /assets/js/ folder, and create crate-model.js file
+2. Go to /assets/css/ folder, and create crate-model.css file
+
+## Lib folder
+In this folder, you can find clases like FilePathManager, with functions for return complete path for different folders, when you need to call a file or static function, or MysqlTableManager, instantiate passing the name of table in db, and use his functions to get simply, a lot of registers in db returning in a simple array for use directly in the rest of code.
+Every method is provided with a description.
+
+## MySQL
+If you want to change de database connection config, go to MySQLiConn.php and set config.
