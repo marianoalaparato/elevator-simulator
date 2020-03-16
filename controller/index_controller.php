@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/lib/Autoloader.php';
+require_once 'lib/Autoloader.php';
 
 use lib\files_tools\FilePathManager;
 use lib\files_tools\FileUrlManager;
