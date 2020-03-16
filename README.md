@@ -8,7 +8,7 @@ This file is constantly changing, dedicate 1 min to read.
 If you want to install this project on a subfolder of server root path like '/var/www/html/folder-name/',:
 
 1. Go to Autoloader.php file and set 'prooject_root_path = "/folder-name/"'
-2. Go to RouterManager.php file and set 'request_controllers as = ["/folder-name/" => "index"]'.
+2. Go to RouterManager.php file and set 'request_controllers = ["/folder-name/" => "index"]'.
 
 This 2 variables provides you to make separeted projects in sub-folders easy, and the rest of clases, methods, and assets (js, css, img, tmp) works automatically.
 
@@ -32,7 +32,7 @@ If you want to create a new page, for example, called create-model.php:
      or
      '$project_root_path = "/folder_name/"; require $_SERVER["DOCUMENT_ROOT"].$project_root_path."lib/Autoloader.php";'
      if your projects is placed on a subfolder of root server path
-3. Go to RouterManager.php file and add new route to 'request_controller' variable:
+3. Go to RouterManager.php file and add new route to 'request_controllers' variable:
    '["/create-model/" => "create-model"]'
    or
    '["/folder-name/create-model/" => "create-model"]'
