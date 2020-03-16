@@ -1,6 +1,29 @@
 #prompt{
-    height: 800px;
+    height: 200px;
     overflow: scroll;
+}
+
+.floors{
+    border:3px solid #fff;
+    border-bottom:0px;
+}
+
+.elevator{
+    border:3px solid #fff;
+    background-color: indianred;
+}
+
+label{
+    margin-bottom: 0rem !important;
+    margin-right: 1rem;
+}
+
+.panel-btn{
+    margin-right: 1rem;
+}
+
+.generate-btn{
+    margin-top: 1.5rem;
 }
 
 .flex_views{

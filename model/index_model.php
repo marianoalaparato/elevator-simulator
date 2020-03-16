@@ -11,18 +11,30 @@ use lib\security_tools\SecurityTools;
 class IndexModel {
     
     # Properties
-    private $used_db_table = 'elevators_secuence_data';
-    private $mysql_table_manager;
+    private $ebd_db_table = 'elevators_basic_data';
+    private $edb_table_manager;
+    private $ts_db_table = 'travels_secuences';
+    private $ts_table_manager;
     private $security_tools;
     
-    public $total_floors = 4; 
-    public $floor_H = 2.5;
-    public $persons_media_weight = 80; # Kg
-    #
+    public $report_name;
+    public $trains;
+    public $total_elevators = 3;
+    public $building_h = 600; # px 
+    public $total_floors = 4;
+    public $persons_media_weight = 80;
+    public $global_time = 39600;
+    public $speed_configs = [
+        'slow'=>5,
+        'medium'=>2.5,
+        'fast'=>1.25
+    ];
+    
     # Methods
     
     public function __construct(){
-        $this->mysql_table_manager = new MySQLiTablesManager($this->used_db_table);
+        $this->ebd_table_manager = new MySQLiTablesManager($this->ebd_db_table);
+        $this->ts_table_manager = new MySQLiTablesManager($this->ts_db_table);
         $this->security_tools = new SecurityTools();
     }
     
@@ -46,17 +58,48 @@ class IndexModel {
     }
     
     /**
-     * Description: Generate new elevator
-     * @param type $elevator_id
-     * @return boolean
+     * Description: Generate new elevators
+     * @return bool or array
      */
-    public function generatElevator($elevator_id){
-        $returned_cols = $this->mysql_table_manager->getTableColsNames();
-        $elevator = $this->mysql_table_manager->getDataSetFor(['id'=>$elevator_id], $returned_tables);
+    public function generateElevators(){
+        $returned_cols = $this->ebd_table_manager->getTableColsNames();
         
-        if(false === $this->security_tools->checkIsType($elevator, 'object')){
+        $elevators = array();
+        for($i = 0; $i < $this->total_elevators; $i++){
+            $elevator = $this->ebd_table_manager->getDataSetFor(['id'=>$i], $returned_cols);
+        
+            if(false === $this->security_tools->checkIsType($elevator, 'array')){
+                $elevators[$i] = false;
+            }else{
+                $elevators[$i] = $elevator;
+            }
+        }
+        
+        return $elevators;
+    }
+    
+    /**
+     * Description: Start the process for generate a report
+     * @param: array $report_data
+     * @return: bool or html link to download generated report
+     */
+    public function generateReport($report_data){
+        if(false === $this->security_tools->checkIsType($report_data, 'array')){
             return false;
         }
-        return $elevator;
+        
+        $this->report_name = $report_data['report_name'];
+        $this->trains = $report_data['work_time'];
+        $this->total_elevators = $report_data['num_elevators'];
+        
+        $elevators = $this->generateElevators();
+        
+        $secuences = $this->ts_table_manager->getAllDataSet();
+        
+        #var_dump($elevators[0]);
+        var_dump($secuences);
+        
+        
+        
     }
 }

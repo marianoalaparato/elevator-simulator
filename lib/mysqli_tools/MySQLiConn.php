@@ -18,7 +18,7 @@ class MySQLiConn {
     protected $server = 'localhost';
     protected $usr_name = 'root';
     protected $psswd = 'root';
-    protected $db_name = 'ai-for-ia';
+    protected $db_name = 'elevators_simulator';
     protected $security_tools;
     
     # Methods

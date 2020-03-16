@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-require 'lib/Autoloader.php';
+require_once 'lib/Autoloader.php';
 
 use router\RouterManager;
 use lib\files_tools\FilePathManager;
