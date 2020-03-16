@@ -33,9 +33,9 @@ If you want to create a new page, for example, called create-model.php:
      '$project_root_path = "/folder_name/"; require $_SERVER["DOCUMENT_ROOT"].$project_root_path."lib/Autoloader.php";'
      if your projects is placed on a subfolder of root server path
 3. Go to RouterManager.php file and add new route to 'request_controller' variable:
-   '["/create-model.php" => "create-model"]'
+   '["/create-model/" => "create-model"]'
    or
-   '["/folder-name/create-model.php" => "create-model"]'
+   '["/folder-name/create-model/" => "create-model"]'
    if your projects is placed on a subfolder of root server path
 
 The model and view names, and require methods and actions used from controller to this files and in this files, its your decision.
