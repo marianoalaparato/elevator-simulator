@@ -19,7 +19,8 @@ class IndexModel {
     public $total_floors = 4;
     public $persons_media_weight = 80;
     public $global_time = 39600;
-    public $speed_configs = [
+    public $simulator_speed = 5;
+    public $elevator_speed_configs = [
         'slow'=>5,
         'medium'=>2.5,
         'fast'=>1.25
@@ -63,7 +64,7 @@ class IndexModel {
         for($i = 0; $i < $this->total_elevators; $i++){
             $elevator = $this->ebd_table_manager->getDataSetFor(['id'=>$i], $returned_cols);
         
-            if(false === $this->security_tools->checkIsType($elevator, 'array')){
+            if(false === $this->security_tools->checkIsType($elevator, 'array', true)){
                 $elevators[$i] = false;
             }else{
                 $elevators[$i] = $elevator;
@@ -71,6 +72,57 @@ class IndexModel {
         }
         
         return $elevators;
+    }
+    
+    /**
+     * Description: Genereta a complete day of work and return data metrics when finish
+     * @param: array $secuences
+     * @param: array $elevators
+     * @return: bool or array
+     */
+    public function generateWorkDay($secuences, $elevators){
+        if(false === $this->security_tools->checkIsType($secuences, 'array', true)){
+            return false;
+        }
+        if(false === $this->security_tools->checkIsType($elevators, 'array', true)){
+            return false;
+        }
+        
+        
+        # Total work time individual secuence
+        echo '-----------------------------------------------------------</br>';
+        $works_times = array();
+        foreach ($secuences as $s_data) {
+            # Total secuence work time
+            $format = '%h:%i:%s'; # (%i = minutes) (%h = hours) (%a = days)
+            $time1 = date_create($s_data['start_time']);
+            $time2 = date_create($s_data['end_time']);
+
+            $diference = date_diff($time1, $time2);
+            $works_times[] = $diference->format($format);
+            
+            echo "---New secuence---</br>";
+            echo "Start: ".$s_data['start_time']."</br>";
+            echo "End: ".$s_data['end_time']."</br>"; 
+            echo "Total work day time individual secuence in hours: ".$diference->format($format)."</br>";
+        }
+        
+        # Total work time of day find the max value of global works times and pass to seconds
+        $total_work_day = max($works_times);
+        echo '-----------------------------------------------------------</br>';
+        echo "Max total work day time in global secuences in hours: ".$total_work_day.'</br>';
+        $values = explode(':', $total_work_day);
+        $total_seconds_work_day = 0;
+        for($i = 0; $i < count($values); $i++){
+            if($i == 0){
+                $total_seconds_work_day += ($values[0] * 60) * 60;
+            }
+            if($i == 1){
+                $total_seconds_work_day += $values[1] * 60;
+            }
+        }
+        echo "Max total work day time in global secuences in seconds: ".$total_seconds_work_day.'</br>';
+        echo '-----------------------------------------------------------</br>';
     }
     
     /**
@@ -83,18 +135,21 @@ class IndexModel {
             return false;
         }
         
+        # Basic data
         $this->report_name = $report_data['report_name'];
         $this->trains = $report_data['work_time'];
         $this->total_elevators = $report_data['num_elevators'];
         
+        # Get work day secuences
+        $secuences = $this->ts_table_manager->getAllDataSet();
+        unset($secuences['num_rows']);
+        
+        # Get elevators
         $elevators = $this->generateElevators();
         
-        $secuences = $this->ts_table_manager->getAllDataSet();
-        
-        #var_dump($elevators[0]);
-        var_dump($secuences);
-        
-        
+        # Generate work day
+        $this->generateWorkDay($secuences, $elevators);
         
     }
 }
+

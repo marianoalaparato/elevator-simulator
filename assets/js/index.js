@@ -29,8 +29,8 @@ $(document).ready(function(){
             url: 'controller/index_controller.php',
             data: {generate_report: JSON.stringify(report_data)},
             success:function(data){
-                var text_in_prompt = $('#prompt').text();
-                $('#prompt_txt').text(text_in_prompt + data);
+                var text_in_prompt = $('#prompt').html();
+                $('#prompt_txt').html(text_in_prompt + data);
             },
             error:function(data){
                 $('#prompt_txt').text('Error');
@@ -40,6 +40,4 @@ $(document).ready(function(){
     });
     
 });
-
-
 

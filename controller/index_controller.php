@@ -48,3 +48,4 @@ if(isset($_POST['generate_report'])){
 $view->getRenderElevators($building_h, $total_floors, $floors_h, $total_elevators);
 $view->getRenderPrompt();
 $view->getRenderControls();
+

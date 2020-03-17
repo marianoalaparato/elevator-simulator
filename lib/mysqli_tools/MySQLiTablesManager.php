@@ -112,14 +112,15 @@ class MySQLiTablesManager extends MySQLiConn{
         $response['num_rows'] = $this->getNumRowsAffected($res);
         
         while($row = $res->fetch_assoc()){
-            for($i=0; $i < $response['num_rows']; $i++){
-                foreach ($this->table_cols_names as $col_name) {
-                    $response[$i][$col_name] = $row[$col_name]; 
-                }
+            $data = array();
+            foreach ($this->table_cols_names as $col_name) {
+                $data[$col_name] = $row[$col_name]; 
             }
+            $response[] = $data;
         }
         
         return $response;
     }
 
 }
+
