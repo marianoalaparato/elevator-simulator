@@ -42,8 +42,8 @@ The model and view names, and require methods and actions used from controller t
 
 ## Adding Js and Css to new pages
 If you want to add Js and Css on pages, get the name of page, for example, called create-model.php and:
-1. Go to /assets/js/ folder, and create crate-model.js file
-2. Go to /assets/css/ folder, and create crate-model.css file
+1. Go to /assets/js/ folder, and create create-model.js file
+2. Go to /assets/css/ folder, and create create-model.css file
 
 ## Lib folder
 In this folder, you can find clases like FilePathManager, with functions for return complete path for different folders, when you need to call a file or static function, or MysqlTableManager, instantiate passing the name of table in db, and use his functions to get simply, a lot of registers in db returning in a simple array for use directly in the rest of code.
